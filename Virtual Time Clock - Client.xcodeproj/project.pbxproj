@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6AC7DC6249FE10C7728186E3 /* Pods_Virtual_Time_Clock___Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA79AC2DFDBE1B3D07C91CC /* Pods_Virtual_Time_Clock___Client.framework */; };
 		CAA743F3235DC3CA004B5F50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */; };
 		CAA743F5235DC3CA004B5F50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA743F4235DC3CA004B5F50 /* SceneDelegate.swift */; };
 		CAA743F7235DC3CA004B5F50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA743F6235DC3CA004B5F50 /* ViewController.swift */; };
 		CAA743FA235DC3CA004B5F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA743F8235DC3CA004B5F50 /* Main.storyboard */; };
 		CAA743FC235DC3CD004B5F50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAA743FB235DC3CD004B5F50 /* Assets.xcassets */; };
 		CAA743FF235DC3CD004B5F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA743FD235DC3CD004B5F50 /* LaunchScreen.storyboard */; };
+		CAA74407235DC712004B5F50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAA74406235DC712004B5F50 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B66BBAB2DC118F97A02D2D0 /* Pods-Virtual Time Clock - Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Virtual Time Clock - Client.release.xcconfig"; path = "Target Support Files/Pods-Virtual Time Clock - Client/Pods-Virtual Time Clock - Client.release.xcconfig"; sourceTree = "<group>"; };
+		544F39A201DB749D7EBC7487 /* Pods-Virtual Time Clock - Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Virtual Time Clock - Client.debug.xcconfig"; path = "Target Support Files/Pods-Virtual Time Clock - Client/Pods-Virtual Time Clock - Client.debug.xcconfig"; sourceTree = "<group>"; };
+		7FA79AC2DFDBE1B3D07C91CC /* Pods_Virtual_Time_Clock___Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Virtual_Time_Clock___Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA743EF235DC3CA004B5F50 /* Virtual Time Clock - Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Time Clock - Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA743F4235DC3CA004B5F50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +29,7 @@
 		CAA743FB235DC3CD004B5F50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAA743FE235DC3CD004B5F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAA74400235DC3CD004B5F50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAA74406235DC712004B5F50 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AC7DC6249FE10C7728186E3 /* Pods_Virtual_Time_Clock___Client.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8936E7E04D9EA326B1E7436E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FA79AC2DFDBE1B3D07C91CC /* Pods_Virtual_Time_Clock___Client.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CAA743E6235DC3CA004B5F50 = {
 			isa = PBXGroup;
 			children = (
 				CAA743F1235DC3CA004B5F50 /* Virtual Time Clock - Client */,
 				CAA743F0235DC3CA004B5F50 /* Products */,
+				FDEC84BFBEAAB2FFBF24D4B0 /* Pods */,
+				8936E7E04D9EA326B1E7436E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +80,19 @@
 				CAA743FB235DC3CD004B5F50 /* Assets.xcassets */,
 				CAA743FD235DC3CD004B5F50 /* LaunchScreen.storyboard */,
 				CAA74400235DC3CD004B5F50 /* Info.plist */,
+				CAA74406235DC712004B5F50 /* GoogleService-Info.plist */,
 			);
 			path = "Virtual Time Clock - Client";
+			sourceTree = "<group>";
+		};
+		FDEC84BFBEAAB2FFBF24D4B0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				544F39A201DB749D7EBC7487 /* Pods-Virtual Time Clock - Client.debug.xcconfig */,
+				0B66BBAB2DC118F97A02D2D0 /* Pods-Virtual Time Clock - Client.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +102,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAA74403235DC3CD004B5F50 /* Build configuration list for PBXNativeTarget "Virtual Time Clock - Client" */;
 			buildPhases = (
+				F41AEE4F1F04C5956FAA51B4 /* [CP] Check Pods Manifest.lock */,
 				CAA743EB235DC3CA004B5F50 /* Sources */,
 				CAA743EC235DC3CA004B5F50 /* Frameworks */,
 				CAA743ED235DC3CA004B5F50 /* Resources */,
+				971DE824B3773AD9D44DDE14 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,12 +156,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAA743FF235DC3CD004B5F50 /* LaunchScreen.storyboard in Resources */,
+				CAA74407235DC712004B5F50 /* GoogleService-Info.plist in Resources */,
 				CAA743FC235DC3CD004B5F50 /* Assets.xcassets in Resources */,
 				CAA743FA235DC3CA004B5F50 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		971DE824B3773AD9D44DDE14 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Virtual Time Clock - Client/Pods-Virtual Time Clock - Client-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Virtual Time Clock - Client/Pods-Virtual Time Clock - Client-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Virtual Time Clock - Client/Pods-Virtual Time Clock - Client-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F41AEE4F1F04C5956FAA51B4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Virtual Time Clock - Client-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CAA743EB235DC3CA004B5F50 /* Sources */ = {
@@ -282,15 +355,17 @@
 		};
 		CAA74404235DC3CD004B5F50 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 544F39A201DB749D7EBC7487 /* Pods-Virtual Time Clock - Client.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Virtual Time Clock - Client/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fr.virtualtimeclock-client.Virtual-Time-Clock---Client";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fr.virtualtimeclock-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -299,15 +374,17 @@
 		};
 		CAA74405235DC3CD004B5F50 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B66BBAB2DC118F97A02D2D0 /* Pods-Virtual Time Clock - Client.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Virtual Time Clock - Client/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fr.virtualtimeclock-client.Virtual-Time-Clock---Client";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fr.virtualtimeclock-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
