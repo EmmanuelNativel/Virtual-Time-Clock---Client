@@ -8,8 +8,11 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class MissionManagerController: UIViewController {
+    
+    let db = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +21,22 @@ class MissionManagerController: UIViewController {
         if let user = Auth.auth().currentUser {
             //User connected
             //user.email
+            /*
+            let userId = user.uid
+            db.collection("utilisateurs").document(userId).setData([
+                "nom" : "nomTest1",
+                "prenom" : "prenomTest1",
+                "isLeader" : false,
+                "entreprise" : "NirloCorp"
+            ]) {
+                err in
+                if let err = err {
+                    print("Erreur")
+                } else {
+                    print("Document créé")
+                }
+            }
+            */
         } else {
             fatalError("⛔️ Erreur : aucun utilisateur connecté !")
         }
