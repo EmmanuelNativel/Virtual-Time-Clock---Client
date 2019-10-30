@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		6AC7DC6249FE10C7728186E3 /* Pods_Virtual_Time_Clock___Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA79AC2DFDBE1B3D07C91CC /* Pods_Virtual_Time_Clock___Client.framework */; };
 		CA08FE0D2366D0CB0045A1C2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA08FE0C2366D0CB0045A1C2 /* LoginController.swift */; };
-		CA08FE11236703190045A1C2 /* MissionManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA08FE10236703190045A1C2 /* MissionManagerController.swift */; };
+		CA15898623696E6900E2E8B5 /* Utilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898523696E6900E2E8B5 /* Utilisateur.swift */; };
+		CA15898C2369712E00E2E8B5 /* MissionManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898B2369712E00E2E8B5 /* MissionManagerController.swift */; };
+		CA15898E2369714900E2E8B5 /* MissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898D2369714900E2E8B5 /* MissionCell.swift */; };
+		CA1589902369A96A00E2E8B5 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898F2369A96A00E2E8B5 /* Mission.swift */; };
 		CAA743F3235DC3CA004B5F50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */; };
 		CAA743F5235DC3CA004B5F50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA743F4235DC3CA004B5F50 /* SceneDelegate.swift */; };
 		CAA743FA235DC3CA004B5F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA743F8235DC3CA004B5F50 /* Main.storyboard */; };
@@ -23,7 +26,10 @@
 		544F39A201DB749D7EBC7487 /* Pods-Virtual Time Clock - Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Virtual Time Clock - Client.debug.xcconfig"; path = "Target Support Files/Pods-Virtual Time Clock - Client/Pods-Virtual Time Clock - Client.debug.xcconfig"; sourceTree = "<group>"; };
 		7FA79AC2DFDBE1B3D07C91CC /* Pods_Virtual_Time_Clock___Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_Virtual_Time_Clock___Client.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA08FE0C2366D0CB0045A1C2 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		CA08FE10236703190045A1C2 /* MissionManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionManagerController.swift; sourceTree = "<group>"; };
+		CA15898523696E6900E2E8B5 /* Utilisateur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilisateur.swift; sourceTree = "<group>"; };
+		CA15898B2369712E00E2E8B5 /* MissionManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionManagerController.swift; sourceTree = "<group>"; };
+		CA15898D2369714900E2E8B5 /* MissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCell.swift; sourceTree = "<group>"; };
+		CA15898F2369A96A00E2E8B5 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		CAA743EF235DC3CA004B5F50 /* Virtual Time Clock - Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Time Clock - Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA743F4235DC3CA004B5F50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,14 +82,17 @@
 			isa = PBXGroup;
 			children = (
 				CA08FE0C2366D0CB0045A1C2 /* LoginController.swift */,
+				CA15898523696E6900E2E8B5 /* Utilisateur.swift */,
+				CA15898F2369A96A00E2E8B5 /* Mission.swift */,
+				CA15898B2369712E00E2E8B5 /* MissionManagerController.swift */,
+				CA15898D2369714900E2E8B5 /* MissionCell.swift */,
+				CAA743F8235DC3CA004B5F50 /* Main.storyboard */,
 				CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */,
 				CAA743F4235DC3CA004B5F50 /* SceneDelegate.swift */,
-				CAA743F8235DC3CA004B5F50 /* Main.storyboard */,
 				CAA743FB235DC3CD004B5F50 /* Assets.xcassets */,
 				CAA743FD235DC3CD004B5F50 /* LaunchScreen.storyboard */,
 				CAA74400235DC3CD004B5F50 /* Info.plist */,
 				CAA74406235DC712004B5F50 /* GoogleService-Info.plist */,
-				CA08FE10236703190045A1C2 /* MissionManagerController.swift */,
 			);
 			path = "Virtual Time Clock - Client";
 			sourceTree = "<group>";
@@ -214,8 +223,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAA743F3235DC3CA004B5F50 /* AppDelegate.swift in Sources */,
+				CA15898E2369714900E2E8B5 /* MissionCell.swift in Sources */,
+				CA1589902369A96A00E2E8B5 /* Mission.swift in Sources */,
 				CA08FE0D2366D0CB0045A1C2 /* LoginController.swift in Sources */,
-				CA08FE11236703190045A1C2 /* MissionManagerController.swift in Sources */,
+				CA15898C2369712E00E2E8B5 /* MissionManagerController.swift in Sources */,
+				CA15898623696E6900E2E8B5 /* Utilisateur.swift in Sources */,
 				CAA743F5235DC3CA004B5F50 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

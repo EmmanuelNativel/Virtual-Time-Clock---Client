@@ -66,7 +66,7 @@ class LoginController: UIViewController {
                 else { // Authentification réussie
                     print("✅ Connexion de l'utilisateur " + self.emailTextField.text!)
                     
-                    // On va vérifier que c'est bien en employé
+                    // On va vérifier que c'est bien un employé
                     let db = Firestore.firestore()          // Instance de la base de données
                     let user = Auth.auth().currentUser      // Récupération de l'utilisateur courrant
                     let userId = user?.uid                  // Id de l'utilisateur courrant
@@ -80,7 +80,7 @@ class LoginController: UIViewController {
                             let isLeader = document.get("isLeader") as! Bool    // Récupération du champ isLeader
                             if isLeader == false {                              // C'est un employé
                                 print("✅ Ce n'est pas un leader, je le redirige vers la liste des missions")
-                                self.performSegue(withIdentifier: "LoginToMissionManager", sender: self)
+                                self.performSegue(withIdentifier: "loginToMissionManager", sender: self)
                             }
                             else { // Ce n'est pas un employé, c'est un gérant !
                                 print("⛔️ C'est un leader, je le déconnecte")
@@ -92,7 +92,7 @@ class LoginController: UIViewController {
                                 }
                             }
                         }
-                        else { 
+                        else {
                             print("⛔️ Erreur : Le document demandé pour cet utilisateur n'existe pas !")
                         }
                     }
