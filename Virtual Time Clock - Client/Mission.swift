@@ -10,6 +10,7 @@ import Foundation
 
 class Mission {
     
+    let id: String
     let titre: String
     let description: String
     let lieu: String
@@ -17,8 +18,10 @@ class Mission {
     let fin: Date
     let latitude: Double
     let longitude: Double
+    let rayon: Int
     
-    init(titre: String, lieu: String, description: String, debut: Date, fin: Date, latitude: Double, longitude: Double) {
+    init(id: String, titre: String, lieu: String, description: String, debut: Date, fin: Date, latitude: Double, longitude: Double, rayon: Int) {
+        self.id = id
         self.titre = titre
         self.lieu = lieu
         self.description = description
@@ -26,6 +29,7 @@ class Mission {
         self.fin = fin
         self.latitude = latitude
         self.longitude = longitude
+        self.rayon = rayon
     }
     
 }

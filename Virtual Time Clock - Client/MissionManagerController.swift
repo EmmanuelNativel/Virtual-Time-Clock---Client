@@ -47,6 +47,7 @@ class MissionManagerController: UITableViewController {
                     // Pour chaque document, on crée une mission et on l'ajoute à la liste
                     
                     //Récupération des String
+                    let id: String = document.documentID
                     let titre: String = document.get("titre") as! String
                     let description: String = document.get("description") as! String
                     let lieu: String = document.get("lieu") as! String
@@ -62,8 +63,12 @@ class MissionManagerController: UITableViewController {
                     let latitude = localisation.latitude
                     let longitude = localisation.longitude
                     
+                    // Récupération de Number (rayon)
+                    let rayon: Int = document.get("rayon") as! Int
+            
+                    
                     // Création de la mission et ajout dans la liste
-                    self.missions.append( Mission(titre: titre, lieu: lieu, description: description, debut: debut, fin: fin, latitude: latitude, longitude: longitude) )
+                    self.missions.append( Mission(id: id, titre: titre, lieu: lieu, description: description, debut: debut, fin: fin, latitude: latitude, longitude: longitude, rayon: rayon) )
                     
                 }
                 
@@ -100,6 +105,34 @@ class MissionManagerController: UITableViewController {
         return cell
     }
     
+    
+    // MARK: - Navigation
+
+    // Fontion permettant de faire des actions avant l'envoi du segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Récupération de la destination du segue
+        let destination = segue.destination as! MissionController
+        
+        // On test si le segue est bien celui qu'on espère
+        if segue.identifier == "MissionsManagerToMission" {
+            // On récupère l'index de la cellule sélectionnée
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                let mission = missions[indexPath.row]   // On récupère la mission correspondante
+                destination.mission = mission           // On transfert la mission à la vue suivante
+            }
+        }
+    }
+    
+    
+    /*
+    //Clique sur une cellule
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Récupération de la mission correspondant à la cellule cliquée
+        //let mission = missions[indexPath.row]
+        
+        //performSegue(withIdentifier: "MissionsManagerToMission", sender: self)
+    }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -133,16 +166,6 @@ class MissionManagerController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     */
 

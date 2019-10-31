@@ -169,6 +169,7 @@
                                     <outlet property="descriptionLabel" destination="A3n-Xd-42r" id="S3F-SU-U2f"/>
                                     <outlet property="lieuLabel" destination="m4m-R2-Sum" id="Prb-1n-wgL"/>
                                     <outlet property="titreLabel" destination="OIA-AV-Tgp" id="YyK-8r-pHr"/>
+                                    <segue destination="OW1-FI-fC7" kind="presentation" identifier="MissionsManagerToMission" modalPresentationStyle="fullScreen" id="31e-dt-qMC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -181,6 +182,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BZX-kq-4ah" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="927.536231884058" y="105.80357142857143"/>
+        </scene>
+        <!--Mission Controller-->
+        <scene sceneID="fab-Dl-qy6">
+            <objects>
+                <viewController id="OW1-FI-fC7" customClass="MissionController" customModule="Virtual_Time_Clock___Client" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="shm-H6-xYg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="2EZ-i6-5R4"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nXz-GQ-mzU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="glp-KO-lyH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1820" y="106"/>
         </scene>
     </scenes>
     <resources>
