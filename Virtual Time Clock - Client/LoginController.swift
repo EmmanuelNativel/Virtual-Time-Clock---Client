@@ -32,16 +32,20 @@ class LoginController: UIViewController {
     
     //Méthode pour paramétrer les boutons
     private func setupButtons(){
-        loginButton.layer.cornerRadius = 20 //Arrodir les bords du bouton login
+        loginButton.layer.cornerRadius = 20 //Arrondir les bords du bouton login
     }
     
     //Méthode pour paramétrer les TextFiels
     private func setupTextField(){
-        //Liaison avec les délégués
+        // Liaison avec les délégués
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
-        //Tap gesture pour fermer le clavier quand on clique dans le vide
+        // Personnalisation des placeholders
+        emailTextField.attributedPlaceholder = NSAttributedString(string:"Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        // Tap gesture pour fermer le clavier quand on clique dans le vide
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
     }

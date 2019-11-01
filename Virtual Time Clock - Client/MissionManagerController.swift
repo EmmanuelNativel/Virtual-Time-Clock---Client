@@ -107,6 +107,19 @@ class MissionManagerController: UITableViewController {
     
     
     // MARK: - Navigation
+    
+    
+    //Clique sur une cellule
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // On désélectionne la cellule cliquée
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        // Récupération de la mission correspondant à la cellule cliquée
+        let mission = missions[indexPath.row]
+        
+        performSegue(withIdentifier: "MissionsManagerToMission", sender: mission)
+    }
+    
 
     // Fontion permettant de faire des actions avant l'envoi du segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -115,24 +128,21 @@ class MissionManagerController: UITableViewController {
         
         // On test si le segue est bien celui qu'on espère
         if segue.identifier == "MissionsManagerToMission" {
+            
+            let mission = sender as! Mission
+            destination.mission = mission
+            
+            /*
             // On récupère l'index de la cellule sélectionnée
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
                 let mission = missions[indexPath.row]   // On récupère la mission correspondante
                 destination.mission = mission           // On transfert la mission à la vue suivante
+                
             }
+            */
         }
     }
     
-    
-    /*
-    //Clique sur une cellule
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Récupération de la mission correspondant à la cellule cliquée
-        //let mission = missions[indexPath.row]
-        
-        //performSegue(withIdentifier: "MissionsManagerToMission", sender: self)
-    }
-    */
 
     /*
     // Override to support conditional editing of the table view.
