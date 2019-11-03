@@ -14,13 +14,11 @@ import FirebaseFirestore
 class MissionManagerController: UITableViewController {
     
     // MARK: Attributs
-    
     let db = Firestore.firestore()
     var missions: [Mission] = []
-    //var missions: [Mission] = [Mission(titre: "titre1", lieu: "lieu1", description: "description1"), Mission(titre: "titre2", lieu: "lieu2", description: "description2"), Mission(titre: "titre3", lieu: "lieu3", description: "description3")]
     
 
-    
+    // MARK: Cycle de vie
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -108,7 +106,6 @@ class MissionManagerController: UITableViewController {
     
     // MARK: - Navigation
     
-    
     //Clique sur une cellule
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // On désélectionne la cellule cliquée
@@ -123,11 +120,12 @@ class MissionManagerController: UITableViewController {
 
     // Fontion permettant de faire des actions avant l'envoi du segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Récupération de la destination du segue
-        let destination = segue.destination as! MissionController
         
         // On test si le segue est bien celui qu'on espère
         if segue.identifier == "MissionsManagerToMission" {
+            
+            // Récupération de la destination du segue
+            let destination = segue.destination as! MissionController
             
             let mission = sender as! Mission
             destination.mission = mission

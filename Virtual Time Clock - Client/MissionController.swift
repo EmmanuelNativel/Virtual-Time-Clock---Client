@@ -17,10 +17,12 @@ class MissionController: UIViewController {
     @IBOutlet weak var lieuLabel: UILabel!
     @IBOutlet weak var pointerImage: UIImageView!
     @IBOutlet weak var pointerButton: UIButton!
+    @IBOutlet weak var reportButton: UIButton!
     
-    
+    // MARK: Attributs
     var mission: Mission? = nil // La mission courante
 
+    // MARK: Cycle de vie
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,8 +33,7 @@ class MissionController: UIViewController {
         lieuLabel.text = mission?.lieu
         
         setupImages()
-        setupButton()
-
+        setupButtons()
     }
     
     // MARK: Private functions
@@ -53,12 +54,21 @@ class MissionController: UIViewController {
         pointerImage.clipsToBounds = true
     }
     
-    private func setupButton(){
+    private func setupButtons(){
+        
+        // --> Button de pointage
+        
         // On arrondi le bouton pour qu'il ai la même forme que l'image
         pointerButton.layer.cornerRadius = 45
         // On cache son image
         pointerButton.alpha = 0.1
         pointerButton.tintColor = UIColor.blue
+        
+        // --> Bouton pour lancer le rapport
+        reportButton.layer.cornerRadius = 20
+        reportButton.clipsToBounds = true
+        reportButton.layer.borderWidth = 1
+        reportButton.layer.borderColor = UIColor.white.cgColor
     }
     
     private func checkButton(){
@@ -83,16 +93,26 @@ class MissionController: UIViewController {
     }
     
     
-    
-
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "MissionToReport" {
+            
+            // Récupération de la destination de notre segue, ici, c'est un UITabBarController.
+            let destination = segue.destination as! UITabBarController
+            
+            // Récupération de la première vue de notre UITabBarController : c'est notre ReportTextController
+            let reportTextController = destination.viewControllers![0] as! ReportTextController
+            
+            // Récupération de la seconde vue de notre UITabBarController : c'est notre ReportImageController
+            let reportImageController = destination.viewControllers![1] as! ReportImageController
+            
+            // On envoit l'id de la mission courante à la vue suivante
+            let missionID = mission?.id
+            reportTextController.missionId = missionID ?? ""
+            reportImageController.missionId = missionID ?? ""
+        }
     }
-    */
 
 }

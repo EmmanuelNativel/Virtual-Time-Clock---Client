@@ -10,6 +10,7 @@ import Foundation
 
 class Utilisateur {
     
+    // MARK: Attributs
     let nom: String
     let prenom: String
     let entreprise : String

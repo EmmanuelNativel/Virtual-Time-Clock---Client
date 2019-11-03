@@ -7,9 +7,11 @@ target 'Virtual Time Clock - Client' do
 
   # Pods for Virtual Time Clock - Client
     pod 'Firebase/Core'
-    pod 'Firebase/Database'
     pod 'Firebase/Auth'
     pod 'Firebase/Firestore'
     pod 'FirebaseFirestoreSwift'
+    pod 'Firebase/Storage'
+    pod 'FirebaseUI/Storage'
+    
 
 end

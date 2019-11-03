@@ -10,6 +10,7 @@ import Foundation
 
 class Mission {
     
+    // MARK: Attributs
     let id: String
     let titre: String
     let description: String

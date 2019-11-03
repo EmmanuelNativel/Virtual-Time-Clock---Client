@@ -14,6 +14,8 @@
 		CA15898C2369712E00E2E8B5 /* MissionManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898B2369712E00E2E8B5 /* MissionManagerController.swift */; };
 		CA15898E2369714900E2E8B5 /* MissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898D2369714900E2E8B5 /* MissionCell.swift */; };
 		CA1589902369A96A00E2E8B5 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898F2369A96A00E2E8B5 /* Mission.swift */; };
+		CA33C145236DB16500D11678 /* ReportImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C144236DB16500D11678 /* ReportImageController.swift */; };
+		CA9315CE236D6C4F00003499 /* ReportTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9315CD236D6C4F00003499 /* ReportTextController.swift */; };
 		CAA743F3235DC3CA004B5F50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */; };
 		CAA743F5235DC3CA004B5F50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA743F4235DC3CA004B5F50 /* SceneDelegate.swift */; };
 		CAA743FA235DC3CA004B5F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA743F8235DC3CA004B5F50 /* Main.storyboard */; };
@@ -32,6 +34,8 @@
 		CA15898B2369712E00E2E8B5 /* MissionManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionManagerController.swift; sourceTree = "<group>"; };
 		CA15898D2369714900E2E8B5 /* MissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCell.swift; sourceTree = "<group>"; };
 		CA15898F2369A96A00E2E8B5 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		CA33C144236DB16500D11678 /* ReportImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImageController.swift; sourceTree = "<group>"; };
+		CA9315CD236D6C4F00003499 /* ReportTextController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTextController.swift; sourceTree = "<group>"; };
 		CAA743EF235DC3CA004B5F50 /* Virtual Time Clock - Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Time Clock - Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA743F4235DC3CA004B5F50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 				CA15898B2369712E00E2E8B5 /* MissionManagerController.swift */,
 				CA15898D2369714900E2E8B5 /* MissionCell.swift */,
 				CA12C7D8236B496E0073363E /* MissionController.swift */,
+				CA9315CD236D6C4F00003499 /* ReportTextController.swift */,
+				CA33C144236DB16500D11678 /* ReportImageController.swift */,
 				CAA743F8235DC3CA004B5F50 /* Main.storyboard */,
 				CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */,
 				CAA743F4235DC3CA004B5F50 /* SceneDelegate.swift */,
@@ -226,7 +232,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA12C7D9236B496E0073363E /* MissionController.swift in Sources */,
+				CA33C145236DB16500D11678 /* ReportImageController.swift in Sources */,
 				CAA743F3235DC3CA004B5F50 /* AppDelegate.swift in Sources */,
+				CA9315CE236D6C4F00003499 /* ReportTextController.swift in Sources */,
 				CA15898E2369714900E2E8B5 /* MissionCell.swift in Sources */,
 				CA1589902369A96A00E2E8B5 /* Mission.swift in Sources */,
 				CA08FE0D2366D0CB0045A1C2 /* LoginController.swift in Sources */,

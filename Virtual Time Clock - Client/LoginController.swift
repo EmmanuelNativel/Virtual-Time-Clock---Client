@@ -17,9 +17,7 @@ class LoginController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    // MARK: Attributs
-    
-    
+    // MARK: Cycle de vie
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +26,7 @@ class LoginController: UIViewController {
     }
     
     
-    // MARK: Méthodes
+    // MARK: Private functions
     
     //Méthode pour paramétrer les boutons
     private func setupButtons(){
