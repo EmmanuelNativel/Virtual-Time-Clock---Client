@@ -19,9 +19,9 @@ class Mission {
     let fin: Date
     let latitude: Double
     let longitude: Double
-    let rayon: Int
+    let rayon: Double
     
-    init(id: String, titre: String, lieu: String, description: String, debut: Date, fin: Date, latitude: Double, longitude: Double, rayon: Int) {
+    init(id: String, titre: String, lieu: String, description: String, debut: Date, fin: Date, latitude: Double, longitude: Double, rayon: Double) {
         self.id = id
         self.titre = titre
         self.lieu = lieu

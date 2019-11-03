@@ -28,6 +28,15 @@ class MissionManagerController: UITableViewController {
         } else { // Sinon, on affiche les missions
             loadMissionsFromDB(dataBase: db)
         }
+        
+        //CODE POUR CHANGER L'IMAGE DE FOND DE LA BAR DE NAVIGATION
+        /*
+        let image = UIImage(named: "bg")!.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch)
+        if let navigationController = self.navigationController {
+           navigationController.navigationBar.setBackgroundImage(image, for: .default)
+        }
+        */
+        
     }
     
     
@@ -62,7 +71,7 @@ class MissionManagerController: UITableViewController {
                     let longitude = localisation.longitude
                     
                     // Récupération de Number (rayon)
-                    let rayon: Int = document.get("rayon") as! Int
+                    let rayon: Double = document.get("rayon") as! Double
             
                     
                     // Création de la mission et ajout dans la liste
