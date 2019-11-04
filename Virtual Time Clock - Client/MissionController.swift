@@ -126,7 +126,10 @@ class MissionController: UIViewController {
         
         // On check si l'employé est dans la zone de la mission au moment où il pointe
         if missionArea.contains(CLLocationCoordinate2DMake(currentLatitude!, currentLongitude!)) {
+            print("🧭✅ L'employé a pointé. ")
             notifyEnterToDB() // On notifie la base de données que l'employé est dans dans la zone de mission
+        } else {
+            print("🧭⛔️ L'employé a pointé, mais il n'est pas sur les lieux de la mission ! ")
         }
         
         // On commence à écouter les entrées et sorties de la zone
@@ -135,24 +138,24 @@ class MissionController: UIViewController {
     
     // Fonction qui enregistre la sortie de l'employé de la zone de la mission courrante dans la base de données
     private func notifyExitToDB(){
-        database.collection("pointage").document(mission!.id).setData(
+        print("ℹ️ Notification de sortie envoyée à la BD")
+        database.collection("pointage").document(mission!.id).collection("pointageMission").document(userID).setData(
             [
-                userID: [
-                    "date" : Timestamp(date: Date()), // On enregistre également la date courante
-                    "statut" : "sortie"
-                ]
-        ])
+                "date" : Timestamp(date: Date()), // On enregistre également la date courante
+                "estPresent" : false
+            ]
+        )
     }
     
     // Fonction qui enregistre l'entrée de l'employé dans la zone de la mission courrante dans la base de données
     private func notifyEnterToDB(){
-        database.collection("pointage").document(mission!.id).setData(
+        print("ℹ️ Notification d'entrée envoyée à la BD")
+        database.collection("pointage").document(mission!.id).collection("pointageMission").document(userID).setData(
             [
-                userID: [
-                    "date" : Timestamp(date: Date()), // On enregistre également la date courante
-                    "statut" : "entree"
-                ]
-        ])
+                "date" : Timestamp(date: Date()), // On enregistre également la date courante
+                "estPresent" : true
+            ]
+        )
     }
     
     
