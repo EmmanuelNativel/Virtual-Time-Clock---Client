@@ -20,6 +20,9 @@ class Mission {
     let latitude: Double
     let longitude: Double
     let rayon: Double
+    var reportText: String?
+    var reportImagePath: String?
+    var reportDate: Date?
     
     init(id: String, titre: String, lieu: String, description: String, debut: Date, fin: Date, latitude: Double, longitude: Double, rayon: Double) {
         self.id = id
@@ -31,6 +34,18 @@ class Mission {
         self.latitude = latitude
         self.longitude = longitude
         self.rayon = rayon
+    }
+    
+    public func setReportText(text:String){
+        self.reportText = text
+    }
+    
+    public func setreportImagePath(path:String){
+        self.reportImagePath = path
+    }
+    
+    public func setreportDate(date:Date){
+        self.reportDate = date
     }
     
 }

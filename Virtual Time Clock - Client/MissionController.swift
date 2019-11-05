@@ -24,9 +24,11 @@ class MissionController: UIViewController {
     
     
     // MARK: Attributs
-    var mission: Mission? = nil // La mission courante
-    let locationManager = CLLocationManager()
-    let database = Firestore.firestore()
+    let locationManager = CLLocationManager()   // Gestionnaire de géolocalisation
+    let database = Firestore.firestore()        // Référence à notre base de données
+    var mission: Mission? = nil                 // La mission courante
+    var rapport: Rapport?                       // Le rapport de la mission courrante
+    
     let userID: String = "userIdTest2" // PROVISOIRE
     
     
@@ -52,6 +54,13 @@ class MissionController: UIViewController {
             locationManager.pausesLocationUpdatesAutomatically = true       // La géolocalisation peut se mettre en pause quand elle n'est pas nécessaire
             locationManager.activityType = .other                           // On indique le type d'utilisation de la géolocalisation
             locationManager.requestAlwaysAuthorization()                    // On demande l'autorisation de géolocaliser à l'utilisateur
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // On récupère le rapport dans la base de données
+        if mission?.id != nil {
+            getReportFromDB(forMissionId: mission!.id)
         }
     }
     
@@ -83,7 +92,6 @@ class MissionController: UIViewController {
         pointerButton.layer.cornerRadius = 45
         // On cache son image
         pointerButton.alpha = 0.1
-        pointerButton.tintColor = UIColor.blue
         
         // Bouton pour écrire le rapport
         reportButton.layer.cornerRadius = 20
@@ -93,20 +101,27 @@ class MissionController: UIViewController {
     }
     
     // Fonction permettant d'animer le bouton de pointage
-    private func checkButton(){
+    private func checkButton(valide: Bool){
         // Couleur de l'image
-        pointerButton.tintColor = UIColor.green
+        let color = valide ? UIColor.green : UIColor.red
+        
+        // Type d'image (on utilise des images du système iOS)
+        let image = valide ? UIImage.init(systemName: "checkmark.seal") : UIImage.init(systemName: "xmark.seal")
+
+        pointerButton.setBackgroundImage(image, for: UIControl.State.normal)
+        pointerButton.tintColor = color
         
         // Fade In : On affiche l'image
-        UIView.animate(withDuration: 1, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+        UIView.animate(withDuration: 1, delay: 0.3, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.pointerButton.alpha = 0.8
         }, completion: nil)
         
-        // Fade Out : On recache l'image
-        UIView.animate(withDuration: 0.1, delay: 1, options: UIView.AnimationOptions.curveEaseOut, animations: {
+        // Fade Out : On cache l'image
+        UIView.animate(withDuration: 1, delay: 1, options: UIView.AnimationOptions.curveEaseOut, animations: {
             self.pointerButton.alpha = 0.1
-            self.pointerButton.tintColor = UIColor.blue
-        }, completion: nil)
+        }) { (animationIsOver) in
+            self.pointerButton.tintColor = nil // On termine par enlever la couleur de l'image
+        }
     }
     
     // Fonction permettant d'observer les entrées et sorties de l'employé dans la zone de la mission courrante
@@ -127,13 +142,17 @@ class MissionController: UIViewController {
         // On check si l'employé est dans la zone de la mission au moment où il pointe
         if missionArea.contains(CLLocationCoordinate2DMake(currentLatitude!, currentLongitude!)) {
             print("🧭✅ L'employé a pointé. ")
-            notifyEnterToDB() // On notifie la base de données que l'employé est dans dans la zone de mission
+            // On lance l'animation du bouton
+            checkButton(valide: true)
+            // On notifie la base de données que l'employé est dans dans la zone de mission
+            notifyEnterToDB()
+            // On commence à écouter les entrées et sorties de la zone
+            locationManager.startMonitoring(for: missionArea)
         } else {
-            print("🧭⛔️ L'employé a pointé, mais il n'est pas sur les lieux de la mission ! ")
+            print("🧭⛔️ L'employé n'est pas sur les lieux de la mission ! ")
+            // On lance l'animation du bouton
+            checkButton(valide: false)
         }
-        
-        // On commence à écouter les entrées et sorties de la zone
-        locationManager.startMonitoring(for: missionArea)
     }
     
     // Fonction qui enregistre la sortie de l'employé de la zone de la mission courrante dans la base de données
@@ -158,13 +177,38 @@ class MissionController: UIViewController {
         )
     }
     
+    // Fonction permettant de récupérer le rapport de la mission courante dans la BD. Effet de bord : variable rapport
+    private func getReportFromDB(forMissionId: String) {
+        let missionID = mission?.id ?? ""
+        
+        if missionID != "" {
+            let missionsRef = database.collection("missions").document(missionID)
+            
+            missionsRef.getDocument { (document, error) in
+                // On test si le document lié à cette mission existe bien
+                if let document = document, document.exists {
+                    // On récupère le rapport stocké dans le document. C'est un dictionnaire.
+                    let rapportFromDB: [String: Any]? = document.get("rapport") as? [String: Any]
+                    
+                    if rapportFromDB != nil { // Si un rapport existe sur la base de données,
+                        // On va récupérer les données de ce rapport :
+                        let timestamp: Timestamp = rapportFromDB!["date"] as! Timestamp         // Récupération de la date
+                        let date: Date = timestamp.dateValue()                                  // Conversion de la date
+                        let texte: String = rapportFromDB!["texte"] as! String                  // Récupération du texte
+                        let imagePath: String = rapportFromDB!["imageUrl"] as? String ?? ""     // Récupération de l'url de l'image
+                        
+                        self.rapport =  Rapport(texte: texte, imagePath: imagePath, date: date) // On récupère ce rapport sous forme d'objet Rapport()
+                    } else { print("ℹ️ Il n'existe pas de rapport pour cette mission.") }
+                }
+                else { print("⛔️ Erreur : Le document demandé pour cette mission n'existe pas !") }
+            }
+        }
+    }
+    
     
     
     // MARK: Actions
     @IBAction func onClickPointerButton(_ sender: UIButton) {
-        // Animation du bouton
-        checkButton()
-        
         // On lance la détection de la position de l'employé
         startNotifyLocation()
     }
@@ -180,16 +224,33 @@ class MissionController: UIViewController {
             // Récupération de la destination de notre segue, ici, c'est un UITabBarController.
             let destination = segue.destination as! UITabBarController
             
-            // Récupération de la première vue de notre UITabBarController : c'est notre ReportTextController
+            // Récupération de la première vue de notre UITabBarController : c'est notre ReportTextController (affichage du texte et date du rapport)
             let reportTextController = destination.viewControllers![0] as! ReportTextController
             
-            // Récupération de la seconde vue de notre UITabBarController : c'est notre ReportImageController
+            // Récupération de la seconde vue de notre UITabBarController : c'est notre ReportImageController (affichage de l'image du rapport)
             let reportImageController = destination.viewControllers![1] as! ReportImageController
             
-            // On envoit l'id de la mission courante à la vue suivante
-            let missionID = mission?.id
-            reportTextController.missionId = missionID ?? ""
-            reportImageController.missionId = missionID ?? ""
+            let missionID = mission?.id ?? ""
+            
+            if missionID != "" {
+                // On envoi l'id de la mission courante aux vues suivantes
+                reportTextController.missionId = missionID
+                reportImageController.missionId = missionID
+                
+                // On va envoyer la même instance de rapport aux 2 vues, pour qu'elles gardent les mêmes données.
+                if rapport != nil {
+                    // Si le rapport a été trouvé dans la base de données, on l'envoi aux 2 vues.
+                    reportTextController.rapport = rapport
+                    reportImageController.rapport = rapport
+                } else {
+                    // Sinon, on crée un rapport vide, et on l'envoi aux 2 vues.
+                    let rapportVide = Rapport()
+                    reportTextController.rapport = rapportVide
+                    reportImageController.rapport = rapportVide
+                }
+            } else {
+                print("⛔️ L'ID de la mission n'a pas pu être récupéré !")
+            }
         }
     }
     

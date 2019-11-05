@@ -17,22 +17,22 @@ class ReportImageController: UIViewController {
     @IBOutlet weak var missionImageView: UIImageView!
     
     
-    
     // MARK: Attributs
-    let dataBase = Firestore.firestore()
-    let storage = Storage.storage()
-    var missionId: String = ""
-
+    let dataBase = Firestore.firestore()    // Référence de notre base de données
+    let storage = Storage.storage()         // Référence de notre espace de stockage sur le serveur
+    var missionId: String = ""              // ID de la mission courante
+    var rapport: Rapport?                   // Rapport de la mission courante
+    
     
     
     // MARK: Cycle de vie 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Chargement de l'image
-        if missionId != "" {
-            loadReportImageFromStorage()
-        } else { print("⛔️ Impossible de charger l'image car l'identifiant de la mission courante est inconnu !") }
+        // Chargement de l'image depuis l'espace de stockage
+        if rapport != nil {
+            loadImageFromStorage(path: rapport!.imagePath)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,7 +62,7 @@ class ReportImageController: UIViewController {
         uploadImageTask.observe(.success) { snapshot in
             print("✅ L'image a correctement été téléchargée par le serveur.")
             
-            self.writeImagePathInBd(url: url)
+            self.writeImagePathInBd(url: url)   // On met à jour l'url de l'image dans la base de données
         }
         
         // On écoute les erreurs
@@ -78,48 +78,45 @@ class ReportImageController: UIViewController {
         // Notre référence au document correspondant à la mission courante
         let missionRef = dataBase.collection("missions").document(missionId)
         
+        // Mise à jour de l'objer rapport
+        rapport!.imagePath = url
+        
         // Mise à jour de l'image dans la BD
         missionRef.updateData([
-            "rapportImageRef": url
+            "rapport": [
+                "texte" : rapport!.texte,
+                "imageUrl" : rapport!.imagePath,
+                "date" : rapport!.date
+            ]
         ]) { err in
             if let err = err { print("⛔️ Erreur lors de l'écriture du chemin de l'image dans la BD : \(err)") }
-            else { print("✅ L'imagePath du rapport a bien été mis à jour dans la BD.") }
+            else { print("✅ L'url de l'image du rapport a bien été mis à jour dans la BD.") }
         }
     }
     
-    // Fonction permettant de charger l'image de la mission courante dans l'imageView prévue à cet effet
-    private func loadReportImageFromStorage(){
-            // Notre référence au document correspondant à la mission courante
-            let missionRef = dataBase.collection("missions").document(missionId)
+    // Chargement de l'image du rapport depuis l'espace de stockage du serveur
+    private func loadImageFromStorage(path: String){
+        // Lecture dans l'espace de stockage du serveur
+        if path != "" {
+            let imageRef = self.storage.reference().child(path)  // Référence de notre image
             
-            missionRef.getDocument { (document, error) in
-                if let document = document, document.exists { // Le document a été trouvé
-                    print("✅ Le document lié à cette mission a été récupéré correctement.")
-                    // On va tester s'il existe déjà une image pour cette mission. Si c'est le cas, on l'affiche.
-                    if let imagePath = document.get("rapportImageRef") as! String?  {
-                        print("✅ Le chemin d'accès à l'image a été trouvé dans la BD : \(imagePath)")
-                        
-                        // Lecture dans l'espace de stockage du serveur
-                        let imageRef = self.storage.reference().child(imagePath)  // Référence de notre image
-                        
-                        // On va tester si l'image correspondant au path existe sur le serveur en regardant si ses métadonnées ne sont pas nulles.
-                        imageRef.getMetadata { (metadata, error) in
-                            if let error = error {
-                                // L'image n'existe pas dans le storage
-                                print("⛔️ Impossible d'accéder aux métadonnées de l'image : \(error)")
-                            } else {
-                                // Les métadonnées sont présentes, donc l'image existe bel et bien dans le storage
-                                self.missionImageView.sd_setImage(with: imageRef, placeholderImage: UIImage(contentsOfFile: "notFound")) { (image, error, cache, storageRef) in
-                                    if let error = error { print("⛔️ L'image n'a pas pu être chargée ! : \(error)") }
-                                    else { print("✅ L'image a été mise à jour avec succès. ") }
-                                }
-                            }
-                        }
-                        
-                    } else { print("ℹ️ Il n'y a pas d'image associée au rapport de cette mission.") }
-                } else { print("⛔️ Le document demandé n'existe pas !") }
+            // On va tester si l'image correspondant au path existe sur le serveur en regardant si ses métadonnées ne sont pas nulles.
+            imageRef.getMetadata { (metadata, error) in
+                if let error = error {
+                    // L'image n'existe pas dans le storage
+                    print("⛔️ Impossible d'accéder aux métadonnées de l'image : \(error)")
+                } else {
+                    // Les métadonnées sont présentes, donc l'image existe bel et bien dans le storage
+                    // On va insérer l'image dans l'ImageView prévue à cet effet.
+                    self.missionImageView.sd_setImage(with: imageRef, placeholderImage: UIImage(contentsOfFile: "notFound")) { (image, error, cache, storageRef) in
+                        if let error = error { print("⛔️ L'image n'a pas pu être chargée ! : \(error)") }
+                        else { print("✅ L'image a été mise à jour avec succès. ") }
+                    }
+                }
             }
+        } else { print("ℹ️ Il n'y a pas d'image associé à ce rapport.") }
     }
+    
     
     
     

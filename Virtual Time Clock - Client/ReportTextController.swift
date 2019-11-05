@@ -12,35 +12,65 @@ import FirebaseFirestore
 
 class ReportTextController: UIViewController {
     
-    // MARK: Attributs
-    let dataBase = Firestore.firestore()
-    var missionId: String = ""
-    
     // MARK: Outlets
     @IBOutlet weak var reportTextView: UITextView!
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    
+    // MARK: Attributs
+    let dataBase = Firestore.firestore()    // Référence à notre base de données
+    var missionId: String = ""              // ID de la mission de courrante
+    var rapport: Rapport?                   // Rapport de la mission courante
+    var texteInitial: String = ""           // Texte initial du rapport
+    
     
     
     // MARK: cycle de vie
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadReportFromDb()
         
+        // On affiche le texte et la date du rapport
+        if rapport != nil {
+            reportTextView.text = rapport!.texte
+            dateLabel.text = rapport!.date.description
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         // Modification du bouton dans la barre de navigation
         self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(hideKeyboard))
+        
+        // On sauvegarde le texte pour vérifier plus tard si il y a eu des modifications.
+        texteInitial = reportTextView.text
     }
     
     // Appelé quand la vue va disparaître, mais les données sont encore en mémoire.
     override func viewWillDisappear(_ animated: Bool) {
+        // On met à jour la base de données uniquement si le texte a été modifié.
+        if reportTextView.text != texteInitial {
+            updateReportOnDB()
+        }
+    }
+    
+    
+    
+    // MARK: private functions
+    
+    // Fonction permettant de mettre à jour le rapport dans la base de données
+    private func updateReportOnDB(){
         let missionRef = dataBase.collection("missions").document(missionId)
-
+        
+        // Mise à jour de l'objet rapport
+        rapport!.date = Date()  // On transmet la date courante
+        rapport!.texte = reportTextView.text
+        
         // Mise à jour du rapport dans la BD
         missionRef.updateData([
-            "rapport": reportTextView.text ?? ""
+            "rapport": [
+                "texte" : rapport!.texte,
+                "imageUrl" : rapport!.imagePath,
+                "date" : Timestamp(date: rapport!.date)
+            ]
         ]) { err in
             if let err = err {
                 print("⛔️ Erreur lors de l'écriture du rapport dans la BD : \(err)")
@@ -51,31 +81,6 @@ class ReportTextController: UIViewController {
     }
     
     
-    // MARK: private functions
-    
-    // Récupération du rapport lié à la mission courrante dans la base de données
-    private func loadReportFromDb(){
-        if missionId != "" {
-            let missionRef = dataBase.collection("missions").document(missionId) // Notre référence au document correspondant à la mission courante
-            
-            missionRef.getDocument { (document, error) in
-                if let document = document, document.exists { // Le document a été trouvé
-                    print("✅ Le document lié à cette mission a été récupéré correctement.")
-                    // On va testé si il existe déjà un rapport pour cette mission. Si c'est le cas, on l'affiche.
-                    if let rapport = document.get("rapport") as! String?  {
-                        self.reportTextView.text = rapport
-                    } else {
-                        self.reportTextView.text = "Aucun rapport n'a été enregistré." // Aucun rapport enregistré pour cette mission
-                    }
-                    
-                } else {
-                    print("⛔️ Le document demandé n'existe pas !")
-                }
-            }
-        } else {
-            print("⛔️ L'identifiant de la mission courante est inconnu !")
-        }
-    }
     
     // MARK: Actions
     
@@ -83,17 +88,5 @@ class ReportTextController: UIViewController {
     @objc func hideKeyboard() {
         reportTextView.resignFirstResponder()
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
