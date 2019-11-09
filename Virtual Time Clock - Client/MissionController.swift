@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import FirebaseFirestore
+import FirebaseAuth
 
 class MissionController: UIViewController {
     
@@ -28,8 +29,8 @@ class MissionController: UIViewController {
     let database = Firestore.firestore()        // Référence à notre base de données
     var mission: Mission? = nil                 // La mission courante
     var rapport: Rapport?                       // Le rapport de la mission courrante
-    
-    let userID: String = "userIdTest2" // PROVISOIRE
+    let user = Auth.auth().currentUser          // L'utilisateur courant
+    var userID: String?                         // Id de l'utilisateur courant
     
     
 
@@ -37,6 +38,12 @@ class MissionController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Si aucun utilisateur n'est connecté, on affiche la vue de connexion
+        if user == nil {
+            print("⛔️ Aucun utilisateur n'est connecté ! Redirection à l'écran de login.")
+            self.performSegue(withIdentifier: "backToLoginController", sender: self)
+        }
         
         print(" ✅ Ouverture de la mission \(mission?.titre ?? "INCONNUE" )")
         
@@ -46,6 +53,8 @@ class MissionController: UIViewController {
         
         setupImages()   // Personnalisation des images
         setupButtons()  // Personnalisation des boutons
+        
+        userID = user?.uid ?? ""
         
         if ( CLLocationManager.locationServicesEnabled() ){                 // On test si la géolocalisation est acitivée
             locationManager.delegate = self                                 // Lien avec le delegate
@@ -157,24 +166,28 @@ class MissionController: UIViewController {
     
     // Fonction qui enregistre la sortie de l'employé de la zone de la mission courrante dans la base de données
     private func notifyExitToDB(){
-        print("ℹ️ Notification de sortie envoyée à la BD")
-        database.collection("pointage").document(mission!.id).collection("pointageMission").document(userID).setData(
-            [
-                "date" : Timestamp(date: Date()), // On enregistre également la date courante
-                "estPresent" : false
-            ]
-        )
+        if userID != "" {
+            print("ℹ️ Notification de sortie envoyée à la BD")
+            database.collection("pointage").document(mission!.id).collection("pointageMission").document(userID!).setData(
+                [
+                    "date" : Timestamp(date: Date()), // On enregistre également la date courante
+                    "estPresent" : false
+                ]
+            )
+        }
     }
     
     // Fonction qui enregistre l'entrée de l'employé dans la zone de la mission courrante dans la base de données
     private func notifyEnterToDB(){
-        print("ℹ️ Notification d'entrée envoyée à la BD")
-        database.collection("pointage").document(mission!.id).collection("pointageMission").document(userID).setData(
-            [
-                "date" : Timestamp(date: Date()), // On enregistre également la date courante
-                "estPresent" : true
-            ]
-        )
+        if userID != "" {
+            print("ℹ️ Notification d'entrée envoyée à la BD")
+            database.collection("pointage").document(mission!.id).collection("pointageMission").document(userID!).setData(
+                [
+                    "date" : Timestamp(date: Date()), // On enregistre également la date courante
+                    "estPresent" : true
+                ]
+            )
+        }
     }
     
     // Fonction permettant de récupérer le rapport de la mission courante dans la BD. Effet de bord : variable rapport
@@ -214,7 +227,6 @@ class MissionController: UIViewController {
     }
     
     
-    
     // MARK: - Navigation
     
     //Fonction appelée avant l'envoi d'un segue
@@ -250,6 +262,15 @@ class MissionController: UIViewController {
                 }
             } else {
                 print("⛔️ L'ID de la mission n'a pas pu être récupéré !")
+            }
+        }
+        // Segue de retour vers la page de login. (Appelé lors de l'appui sur le bouton de déconnexion)
+        else if segue.identifier == "backToLoginController" {
+            // On déconnecte l'utilisateur courrant
+            do {
+                try Auth.auth().signOut()
+            } catch let signOutError as NSError {
+              print ("Erreur lors de la déconnexion : \(signOutError)")
             }
         }
     }

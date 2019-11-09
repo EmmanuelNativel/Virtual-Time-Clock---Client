@@ -14,17 +14,19 @@ import FirebaseFirestore
 class MissionManagerController: UITableViewController {
     
     // MARK: Attributs
-    let db = Firestore.firestore()
-    var missions: [Mission] = []
+    let db = Firestore.firestore()          // Référence à notre base de données
+    var missions: [Mission] = []            // Liste des missions
+    let user = Auth.auth().currentUser      // Utilisateur courrant
     
 
     // MARK: Cycle de vie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Si aucun utilisateur est connecté, on crash l'application
-        if Auth.auth().currentUser == nil {
-            fatalError("⛔️ Aucun utilisateur n'est connecté !")
+        // Si aucun utilisateur n'est connecté, on affiche la vue de connexion
+        if user == nil {
+            print("⛔️ Aucun utilisateur n'est connecté ! Redirection à l'écran de login.")
+            self.performSegue(withIdentifier: "backToLoginController", sender: self)
         } else { // Sinon, on affiche les missions
             loadMissionsFromDB(dataBase: db)
         }
@@ -84,6 +86,7 @@ class MissionManagerController: UITableViewController {
             }
         }
     }
+    
     
 
     // MARK: - Table view data source
@@ -147,6 +150,15 @@ class MissionManagerController: UITableViewController {
                 
             }
             */
+        }
+        // Segue de retour vers la page de login. (Appelé lors de l'appui sur le bouton de déconnexion)
+        else if segue.identifier == "backToLoginController" {
+            // On déconnecte l'utilisateur courrant
+            do {
+                try Auth.auth().signOut()
+            } catch let signOutError as NSError {
+              print ("Erreur lors de la déconnexion : \(signOutError)")
+            }
         }
     }
     

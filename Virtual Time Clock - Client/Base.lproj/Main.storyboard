@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Iv-gW-2Sl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="f4Z-bp-PSp">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="f4Z-bp-PSp">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Kux-gK-QKo">
@@ -28,7 +28,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="j8P-kf-j2H"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -38,7 +38,7 @@
                                     </textField>
                                     <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vu7-sF-5QO">
                                         <rect key="frame" x="0.0" y="44" width="240" height="2"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="Ijr-vO-WiV"/>
                                             <constraint firstAttribute="height" constant="2" id="kCv-uP-gAm"/>
@@ -51,7 +51,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="rab-nU-KeZ"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -61,7 +61,7 @@
                                     </textField>
                                     <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ehw-xY-8HS">
                                         <rect key="frame" x="0.0" y="94" width="240" height="2"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="4sW-rb-xvh"/>
                                             <constraint firstAttribute="height" constant="2" id="SLc-ap-0pI"/>
@@ -70,15 +70,15 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91K-Ot-wjL">
-                                <rect key="frame" x="87" y="572" width="240" height="40"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <rect key="frame" x="87" y="562" width="240" height="50"/>
+                                <color key="backgroundColor" red="0.29381683469999997" green="0.27856528759999999" blue="0.27058687809999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Xkl-h8-QKZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="Xkl-h8-QKZ"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="Z7a-wy-Qa7"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                 <state key="normal" title="Log in">
-                                    <color key="titleColor" red="0.20759379859999999" green="0.19621092079999999" blue="0.18823403120000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="onClickOnLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wjM-rW-4Li"/>
@@ -100,6 +100,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="uQl-K2-KAd"/>
                     <connections>
                         <outlet property="emailTextField" destination="6jX-QD-HVg" id="9Ee-Rt-Ghv"/>
                         <outlet property="loginButton" destination="91K-Ot-wjL" id="dcM-v2-QyR"/>
@@ -109,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="105.80357142857143"/>
+            <point key="canvasLocation" x="157" y="838"/>
         </scene>
         <!--Mission Manager Controller-->
         <scene sceneID="4cg-Nr-Irj">
@@ -157,7 +158,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3n-Xd-42r">
                                             <rect key="frame" x="93" y="35" width="318" height="52"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                            <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -189,7 +190,13 @@
                             <outlet property="delegate" destination="Pky-Mq-8aV" id="Lzc-Vn-P8v"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="1IJ-YX-T6r"/>
+                    <navigationItem key="navigationItem" id="1IJ-YX-T6r">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="power" catalog="system" id="jD2-Y3-Ma8">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="backToLoginController" modalPresentationStyle="fullScreen" id="soC-EO-bGT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="OW1-FI-fC7" kind="show" identifier="MissionsManagerToMission" id="L5Q-sX-mYp"/>
                     </connections>
@@ -222,7 +229,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titre" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7S-Gc-Wsz">
                                 <rect key="frame" x="20" y="235" width="374" height="20"/>
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="20"/>
-                                <color key="textColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="systemGroupedBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWL-kR-d4u">
@@ -344,7 +351,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2EZ-i6-5R4"/>
                     </view>
-                    <navigationItem key="navigationItem" id="nXz-GQ-mzU"/>
+                    <navigationItem key="navigationItem" id="nXz-GQ-mzU">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="power" catalog="system" id="Jw0-29-N36">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="backToLoginController" modalPresentationStyle="fullScreen" id="aNX-32-4ml"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionLabel" destination="iWL-kR-d4u" id="QQB-dG-lsn"/>
                         <outlet property="lieuLabel" destination="cNr-Nd-sUX" id="4qi-HG-5BO"/>
@@ -484,12 +497,16 @@
     </scenes>
     <resources>
         <image name="bdReport" width="426" height="640"/>
-        <image name="bg" width="457" height="640"/>
+        <image name="bg" width="1280" height="905"/>
         <image name="bg_mission" width="640" height="359"/>
         <image name="buttonPointer" width="640" height="320"/>
         <image name="defaultMission" width="640" height="640"/>
         <image name="notFound" width="640" height="640"/>
         <image name="photo.on.rectangle" catalog="system" width="64" height="48"/>
+        <image name="power" catalog="system" width="62" height="64"/>
         <image name="text.bubble" catalog="system" width="64" height="54"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="soC-EO-bGT"/>
+    </inferredMetricsTieBreakers>
 </document>

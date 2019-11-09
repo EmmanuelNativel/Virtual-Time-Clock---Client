@@ -23,6 +23,15 @@ class LoginController: UIViewController {
         
         setupButtons()
         setupTextField()
+        
+        // On va tester si un utilisateur est déjà connecté. Si c'est le cas, on le redirige vers la liste des missions.
+        if let user = Auth.auth().currentUser {
+            print("✅ Un utilisateur est déjà connecté : \(user.email ?? "")")
+            perform(#selector(presentExampleController), with: nil, afterDelay: 0)
+            // Ici, on utilise un sélector pour s'assurer que la vue vers laquelle on veut rediriger l'utilisateur soit belle et bien chargée.
+        } else {
+            print("ℹ️ Aucun utilisateur n'est connecté.")
+        }
     }
     
     
@@ -30,7 +39,7 @@ class LoginController: UIViewController {
     
     //Méthode pour paramétrer les boutons
     private func setupButtons(){
-        loginButton.layer.cornerRadius = 20 //Arrondir les bords du bouton login
+        loginButton.layer.cornerRadius = 25 //Arrondir les bords du bouton login
     }
     
     //Méthode pour paramétrer les TextFiels
@@ -54,6 +63,11 @@ class LoginController: UIViewController {
     @objc private func hideKeyboard(){
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+    }
+    
+    // Fonction appelée si un utilisateur est déjà connecté
+    @objc private func presentExampleController() {
+        self.performSegue(withIdentifier: "loginToMissionManager", sender: self)
     }
     
     //Fonction appelée quand on appui sur le bouton de logIn
