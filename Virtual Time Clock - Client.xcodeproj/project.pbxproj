@@ -16,6 +16,7 @@
 		CA15898E2369714900E2E8B5 /* MissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898D2369714900E2E8B5 /* MissionCell.swift */; };
 		CA1589902369A96A00E2E8B5 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898F2369A96A00E2E8B5 /* Mission.swift */; };
 		CA33C145236DB16500D11678 /* ReportImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C144236DB16500D11678 /* ReportImageController.swift */; };
+		CA6BF2A9237845570016AD07 /* colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA6BF2A8237845570016AD07 /* colors.xcassets */; };
 		CA9315CE236D6C4F00003499 /* ReportTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9315CD236D6C4F00003499 /* ReportTextController.swift */; };
 		CAA743F3235DC3CA004B5F50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */; };
 		CAA743F5235DC3CA004B5F50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA743F4235DC3CA004B5F50 /* SceneDelegate.swift */; };
@@ -38,6 +39,7 @@
 		CA15898F2369A96A00E2E8B5 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		CA33C144236DB16500D11678 /* ReportImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImageController.swift; sourceTree = "<group>"; };
 		CA60EBC4236EE48700208E5A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		CA6BF2A8237845570016AD07 /* colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = colors.xcassets; sourceTree = "<group>"; };
 		CA9315CD236D6C4F00003499 /* ReportTextController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTextController.swift; sourceTree = "<group>"; };
 		CAA743EF235DC3CA004B5F50 /* Virtual Time Clock - Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Time Clock - Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				CAA743FD235DC3CD004B5F50 /* LaunchScreen.storyboard */,
 				CAA74400235DC3CD004B5F50 /* Info.plist */,
 				CAA74406235DC712004B5F50 /* GoogleService-Info.plist */,
+				CA6BF2A8237845570016AD07 /* colors.xcassets */,
 			);
 			path = "Virtual Time Clock - Client";
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				CAA743FF235DC3CD004B5F50 /* LaunchScreen.storyboard in Resources */,
 				CAA74407235DC712004B5F50 /* GoogleService-Info.plist in Resources */,
 				CAA743FC235DC3CD004B5F50 /* Assets.xcassets in Resources */,
+				CA6BF2A9237845570016AD07 /* colors.xcassets in Resources */,
 				CAA743FA235DC3CA004B5F50 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

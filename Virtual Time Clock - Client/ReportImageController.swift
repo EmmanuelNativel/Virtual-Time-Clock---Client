@@ -40,6 +40,13 @@ class ReportImageController: UIViewController {
         self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(openCamera))
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        // On va détecter les geste de swipe vers la droite
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(onSwipeGesture))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+    }
+    
     
     
     // MARK: private functions
@@ -117,6 +124,22 @@ class ReportImageController: UIViewController {
         } else { print("ℹ️ Il n'y a pas d'image associé à ce rapport.") }
     }
     
+    // Fonction qui permet de changer de vue avec une animation lorsque l'utilisateur fait un swipe vers la droite
+    func pushControllerFromLeft(){
+        // Création de l'animation de notre transition d'écran
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        view.window!.layer.add(transition, forKey: kCATransition)
+        
+        // On décrémente la vue du tabBar en utilisant notre animation
+        if (self.tabBarController?.selectedIndex)! > 0 {
+            self.tabBarController?.selectedIndex -= 1
+        }
+    }
+    
     
     
     
@@ -130,6 +153,13 @@ class ReportImageController: UIViewController {
             imagePicker.sourceType = .camera // On indique qu'on aura uniquement besoin de la caméra
             imagePicker.allowsEditing = true // On autorise l'édition de l'image
             self.present(imagePicker, animated: true, completion: nil) // On affiche la vue
+        }
+    }
+    
+    // Fonction appelée quand un swipe gesture est détecté
+    @objc func onSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
+        if gesture.direction == .right {
+            pushControllerFromLeft()
         }
     }
     

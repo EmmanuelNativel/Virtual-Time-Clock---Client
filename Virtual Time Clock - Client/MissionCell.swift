@@ -17,13 +17,16 @@ class MissionCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        //Changement de la couleur de fond
+        backgroundColor = UIColor(named: "grisFonce")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+        //Couleur dans l'état sélectionné
+        backgroundColor = UIColor(named: "orangeFonce")
     }
     
     // Fonction qui va extraire les informations nécessaires dans une instance de Mission donnée en paramètre
@@ -32,5 +35,18 @@ class MissionCell: UITableViewCell {
         descriptionLabel.text = mission.description
         lieuLabel.text = mission.lieu
     }
+    
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Changement des marges des cellules, de la bordure et du fond
+        let padding = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        contentView.frame = contentView.frame.inset(by: padding)
+        contentView.layer.borderWidth = 2
+        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.backgroundColor = UIColor(named: "orangeClair")?.cgColor
+    }
+    
 
 }

@@ -44,6 +44,13 @@ class ReportTextController: UIViewController {
         texteInitial = reportTextView.text
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        // On va détecter les geste de swipe vers la gauche
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(onSwipeGesture))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+    }
+    
     // Appelé quand la vue va disparaître, mais les données sont encore en mémoire.
     override func viewWillDisappear(_ animated: Bool) {
         // On met à jour la base de données uniquement si le texte a été modifié.
@@ -80,6 +87,22 @@ class ReportTextController: UIViewController {
         }
     }
     
+    // Fonction qui permet de changer de vue avec une animation lorsque l'utilisateur fait un swipe vers la gauche
+    func pushControllerFromRight(){
+        // Création de l'animation de notre transition d'écran
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        transition.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        view.window!.layer.add(transition, forKey: kCATransition)
+        
+        // On incrémente la vue du tabBar en utilisant notre animation
+        if (self.tabBarController?.selectedIndex)! < 2 {
+            self.tabBarController?.selectedIndex += 1
+        }
+    }
+    
     
     
     // MARK: Actions
@@ -87,6 +110,14 @@ class ReportTextController: UIViewController {
     // Fonction permettant de cacher le clavier
     @objc func hideKeyboard() {
         reportTextView.resignFirstResponder()
+    }
+    
+    // Fonction appelée lorsqu'un swipe est détecté
+    @objc func onSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
+        // On change de vue avec une animation de slide partant de la droite
+        if gesture.direction == .left {
+            pushControllerFromRight()
+        }
     }
 
 }

@@ -38,7 +38,6 @@ class MissionManagerController: UITableViewController {
            navigationController.navigationBar.setBackgroundImage(image, for: .default)
         }
         */
-        
     }
     
     
