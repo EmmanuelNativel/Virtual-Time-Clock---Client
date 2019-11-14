@@ -10,11 +10,11 @@ import UIKit
 import CoreLocation
 import FirebaseFirestore
 import FirebaseAuth
+import AVFoundation
 
-class MissionController: UIViewController {
+class MissionController: UIViewController, AVAudioPlayerDelegate {
     
     // MARK: Outlets
-    @IBOutlet weak var missionImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var lieuLabel: UILabel!
@@ -22,6 +22,7 @@ class MissionController: UIViewController {
     @IBOutlet weak var pointerButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var checkLabel: UILabel!
+    var player: AVAudioPlayer!
     
     
     
@@ -81,20 +82,19 @@ class MissionController: UIViewController {
         descriptionLabel.text = mission?.description
         lieuLabel.text = mission?.lieu
         checkLabel.text = NSLocalizedString("check", comment: "Mission")
+        
+        titleLabel.layer.cornerRadius = 10
+        titleLabel.layer.borderColor = UIColor.white.cgColor
+        titleLabel.layer.borderWidth = 2
+        titleLabel.clipsToBounds = true
     }
     
     // Personnalisation des images
     private func setupImages(){
-        // Background de l'entête
-        missionImage.layer.backgroundColor = UIColor.white.withAlphaComponent(0.4).cgColor  // On change la couleur de fond
-        missionImage.layer.borderWidth = 2                          // On donne une bordure
-        missionImage.layer.borderColor = UIColor.white.cgColor      // ... de couleur noire
-        missionImage.layer.cornerRadius = 45                        // On arrondit les bords
-        missionImage.clipsToBounds = true                           // On indique que l'image doit prendre la dorme de la bordure
         
         //Image de pointage
         pointerImage.layer.borderWidth = 2                          // On donne une bordure
-        pointerImage.layer.borderColor = UIColor.black.cgColor      // ... de couleur noire
+        pointerImage.layer.borderColor = UIColor.white.cgColor      // ... de couleur noire
         pointerImage.layer.cornerRadius = 45                        // On arrondit les bords
         pointerImage.clipsToBounds = true                           // On indique que l'image doit prendre la dorme de la bordure
     }
@@ -111,7 +111,7 @@ class MissionController: UIViewController {
         // Bouton pour écrire le rapport
         reportButton.layer.cornerRadius = 20
         reportButton.clipsToBounds = true
-        reportButton.layer.borderWidth = 1
+        reportButton.layer.borderWidth = 2
         reportButton.layer.borderColor = UIColor.white.cgColor
         reportButton.setTitle(NSLocalizedString("reportButton", comment: "Mission"), for: .normal)
     }
@@ -158,6 +158,18 @@ class MissionController: UIViewController {
         // On check si l'employé est dans la zone de la mission au moment où il pointe
         if missionArea.contains(CLLocationCoordinate2DMake(currentLatitude!, currentLongitude!)) {
             print("🧭✅ L'employé a pointé. ")
+            
+            // On va jouer le son de validation
+            if let soundFilePath = Bundle.main.path(forResource: "soundOn", ofType: "mp3") {
+                let fileURL = URL(fileURLWithPath: soundFilePath)
+                do {
+                    try player = AVAudioPlayer(contentsOf: fileURL)
+                    player.delegate = self
+                    player.play()
+                }
+                catch { print("⛔️ Erreur lors de la lecture du son") }
+            }
+            
             // On lance l'animation du bouton
             checkButton(valide: true)
             // On notifie la base de données que l'employé est dans dans la zone de mission
@@ -166,6 +178,18 @@ class MissionController: UIViewController {
             locationManager.startMonitoring(for: missionArea)
         } else {
             print("🧭⛔️ L'employé n'est pas sur les lieux de la mission ! ")
+            
+            // On va jouer le son d'erreur
+            if let soundFilePath = Bundle.main.path(forResource: "ErrorSound", ofType: "mp3") {
+                let fileURL = URL(fileURLWithPath: soundFilePath)
+                do {
+                    try player = AVAudioPlayer(contentsOf: fileURL)
+                    player.delegate = self
+                    player.play()
+                }
+                catch { print("⛔️ Erreur lors de la lecture du son") }
+            }
+            
             // On lance l'animation du bouton
             checkButton(valide: false)
         }

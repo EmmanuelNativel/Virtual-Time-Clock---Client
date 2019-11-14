@@ -23,6 +23,7 @@ class MissionManagerController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // Si aucun utilisateur n'est connecté, on affiche la vue de connexion
         if user == nil {
             print("⛔️ Aucun utilisateur n'est connecté ! Redirection à l'écran de login.")
@@ -38,6 +39,10 @@ class MissionManagerController: UITableViewController {
            navigationController.navigationBar.setBackgroundImage(image, for: .default)
         }
         */
+        
+        let tempImageView = UIImageView(image: UIImage(named: "missionsBg"))
+        tempImageView.contentMode = .scaleAspectFill
+        self.tableView.backgroundView = tempImageView
     }
     
     

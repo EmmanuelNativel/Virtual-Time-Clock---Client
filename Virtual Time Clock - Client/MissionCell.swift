@@ -17,9 +17,7 @@ class MissionCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        //Changement de la couleur de fond
-        backgroundColor = UIColor(named: "grisFonce")
+        self.backgroundColor = nil
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,12 +36,25 @@ class MissionCell: UITableViewCell {
         super.layoutSubviews()
         
         // Changement des marges des cellules, de la bordure et du fond
-        let padding = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        let padding = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         contentView.frame = contentView.frame.inset(by: padding)
-        contentView.layer.borderWidth = 2
+        contentView.layer.borderWidth = 3
         contentView.layer.borderColor = UIColor.black.cgColor
-        contentView.layer.backgroundColor = UIColor(named: "orangeFonce")?.cgColor
+        contentView.addGradientBackground(firstColor: UIColor(named: "orangeFonce")!, secondColor: UIColor(named: "orangeClair")!)
     }
     
 
+}
+
+// Extension de UIView permettant de rajouter un fond dégradé de 2 couleurs
+extension UIView{
+    func addGradientBackground(firstColor: UIColor, secondColor: UIColor){
+        clipsToBounds = true
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
+        gradientLayer.frame = self.bounds
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0)
+        self.layer.insertSublayer(gradientLayer, at: 0)
+    }
 }

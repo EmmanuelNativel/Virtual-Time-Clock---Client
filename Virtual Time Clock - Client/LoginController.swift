@@ -9,13 +9,17 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import AVFoundation
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, AVAudioPlayerDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    // MARK: Attributs
+    var player: AVAudioPlayer!
     
     // MARK: Cycle de vie
     override func viewDidLoad() {
@@ -101,6 +105,19 @@ class LoginController: UIViewController {
                             let isLeader = document.get("isLeader") as! Bool    // Récupération du champ isLeader
                             if isLeader == false {                              // C'est un employé
                                 print("✅ Ce n'est pas un leader, je le redirige vers la liste des missions")
+                                
+                                // On va jouer le son de connexion
+                                if let soundFilePath = Bundle.main.path(forResource: "soundOn", ofType: "mp3") {
+                                    let fileURL = URL(fileURLWithPath: soundFilePath)
+                                    do {
+                                        try self.player = AVAudioPlayer(contentsOf: fileURL)
+                                        self.player.delegate = self
+                                        self.player.play()
+                                    }
+                                    catch { print("⛔️ Erreur lors de la lecture du son") }
+                                }
+                                
+                                // Redirection vers la liste des missions
                                 self.performSegue(withIdentifier: "loginToMissionManager", sender: self)
                             }
                             else { // Ce n'est pas un employé, c'est un gérant !

@@ -15,6 +15,8 @@
 		CA15898C2369712E00E2E8B5 /* MissionManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898B2369712E00E2E8B5 /* MissionManagerController.swift */; };
 		CA15898E2369714900E2E8B5 /* MissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898D2369714900E2E8B5 /* MissionCell.swift */; };
 		CA1589902369A96A00E2E8B5 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA15898F2369A96A00E2E8B5 /* Mission.swift */; };
+		CA207ECD237DAB1B00DC0BDB /* ErrorSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA207ECA237DAB1A00DC0BDB /* ErrorSound.mp3 */; };
+		CA207ECF237DAB1B00DC0BDB /* soundOn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA207ECC237DAB1B00DC0BDB /* soundOn.mp3 */; };
 		CA33C145236DB16500D11678 /* ReportImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33C144236DB16500D11678 /* ReportImageController.swift */; };
 		CA6BF2A9237845570016AD07 /* colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA6BF2A8237845570016AD07 /* colors.xcassets */; };
 		CA9315CE236D6C4F00003499 /* ReportTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9315CD236D6C4F00003499 /* ReportTextController.swift */; };
@@ -38,6 +40,8 @@
 		CA15898B2369712E00E2E8B5 /* MissionManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionManagerController.swift; sourceTree = "<group>"; };
 		CA15898D2369714900E2E8B5 /* MissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCell.swift; sourceTree = "<group>"; };
 		CA15898F2369A96A00E2E8B5 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		CA207ECA237DAB1A00DC0BDB /* ErrorSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ErrorSound.mp3; sourceTree = "<group>"; };
+		CA207ECC237DAB1B00DC0BDB /* soundOn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundOn.mp3; sourceTree = "<group>"; };
 		CA33C144236DB16500D11678 /* ReportImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportImageController.swift; sourceTree = "<group>"; };
 		CA60EBC4236EE48700208E5A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CA6BF2A8237845570016AD07 /* colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = colors.xcassets; sourceTree = "<group>"; };
@@ -75,6 +79,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CA207ED0237DAB2700DC0BDB /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				CA207ECA237DAB1A00DC0BDB /* ErrorSound.mp3 */,
+				CA207ECC237DAB1B00DC0BDB /* soundOn.mp3 */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 		CAA743E6235DC3CA004B5F50 = {
 			isa = PBXGroup;
 			children = (
@@ -106,14 +119,15 @@
 				CA9315CD236D6C4F00003499 /* ReportTextController.swift */,
 				CA33C144236DB16500D11678 /* ReportImageController.swift */,
 				CAA743F8235DC3CA004B5F50 /* Main.storyboard */,
-				CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */,
-				CAA743F4235DC3CA004B5F50 /* SceneDelegate.swift */,
-				CAA743FB235DC3CD004B5F50 /* Assets.xcassets */,
 				CAA743FD235DC3CD004B5F50 /* LaunchScreen.storyboard */,
-				CAA74400235DC3CD004B5F50 /* Info.plist */,
-				CAA74406235DC712004B5F50 /* GoogleService-Info.plist */,
+				CA207ED0237DAB2700DC0BDB /* sounds */,
+				CAA743FB235DC3CD004B5F50 /* Assets.xcassets */,
 				CA6BF2A8237845570016AD07 /* colors.xcassets */,
 				CAEC69B7237C20E40031186F /* Localizable.strings */,
+				CAA74400235DC3CD004B5F50 /* Info.plist */,
+				CAA74406235DC712004B5F50 /* GoogleService-Info.plist */,
+				CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */,
+				CAA743F4235DC3CA004B5F50 /* SceneDelegate.swift */,
 			);
 			path = "Virtual Time Clock - Client";
 			sourceTree = "<group>";
@@ -192,7 +206,9 @@
 				CAEC69B9237C20E40031186F /* Localizable.strings in Resources */,
 				CAA743FC235DC3CD004B5F50 /* Assets.xcassets in Resources */,
 				CA6BF2A9237845570016AD07 /* colors.xcassets in Resources */,
+				CA207ECF237DAB1B00DC0BDB /* soundOn.mp3 in Resources */,
 				CAA743FA235DC3CA004B5F50 /* Main.storyboard in Resources */,
+				CA207ECD237DAB1B00DC0BDB /* ErrorSound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
