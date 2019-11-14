@@ -21,6 +21,7 @@ class MissionController: UIViewController {
     @IBOutlet weak var pointerImage: UIImageView!
     @IBOutlet weak var pointerButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
+    @IBOutlet weak var checkLabel: UILabel!
     
     
     
@@ -47,10 +48,7 @@ class MissionController: UIViewController {
         
         print(" ✅ Ouverture de la mission \(mission?.titre ?? "INCONNUE" )")
         
-        titleLabel.text = mission?.titre
-        descriptionLabel.text = mission?.description
-        lieuLabel.text = mission?.lieu
-        
+        setupLabels()   // Préparation des Labels
         setupImages()   // Personnalisation des images
         setupButtons()  // Personnalisation des boutons
         
@@ -76,6 +74,14 @@ class MissionController: UIViewController {
     
     
     // MARK: Private functions
+    
+    // Préparation des Labels
+    private func setupLabels(){
+        titleLabel.text = mission?.titre
+        descriptionLabel.text = mission?.description
+        lieuLabel.text = mission?.lieu
+        checkLabel.text = NSLocalizedString("check", comment: "Mission")
+    }
     
     // Personnalisation des images
     private func setupImages(){
@@ -107,6 +113,7 @@ class MissionController: UIViewController {
         reportButton.clipsToBounds = true
         reportButton.layer.borderWidth = 1
         reportButton.layer.borderColor = UIColor.white.cgColor
+        reportButton.setTitle(NSLocalizedString("reportButton", comment: "Mission"), for: .normal)
     }
     
     // Fonction permettant d'animer le bouton de pointage

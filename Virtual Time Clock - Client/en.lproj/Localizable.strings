@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  Virtual Time Clock - Client
+
+  Created by Emmanuel Nativel on 11/13/19.
+  Copyright © 2019 Emmanuel Nativel. All rights reserved.
+*/
+
+/* Login */
+"emailPlaceholder" = "Email";
+"passwordPlaceholder" = "Password";
+"loginButton" = "Log in";
+
+/* Mission */
+"check" = "Check it !";
+"reportButton" = "Report";
+"dateLabel" = "Updated on :";

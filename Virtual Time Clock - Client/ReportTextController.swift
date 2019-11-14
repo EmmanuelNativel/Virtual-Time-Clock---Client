@@ -14,7 +14,9 @@ class ReportTextController: UIViewController {
     
     // MARK: Outlets
     @IBOutlet weak var reportTextView: UITextView!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateText: UILabel!
+    @IBOutlet weak var dateLabel: UILabel! // Contient la date de la dernière mise à jour du rapport
+    
     
     
     // MARK: Attributs
@@ -32,7 +34,8 @@ class ReportTextController: UIViewController {
         // On affiche le texte et la date du rapport
         if rapport != nil {
             reportTextView.text = rapport!.texte
-            dateLabel.text = rapport!.date.description
+            dateLabel.text = rapport!.getDateFormat()
+            dateText.text = NSLocalizedString("dateLabel", comment: "Mission")
         }
     }
     

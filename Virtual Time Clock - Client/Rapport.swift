@@ -26,4 +26,8 @@ class Rapport {
         self.date = Date()
     }
     
+    public func getDateFormat() -> String {
+        return DateFormatter.localizedString(from: self.date, dateStyle: .medium, timeStyle: .short)
+    }
+    
 }

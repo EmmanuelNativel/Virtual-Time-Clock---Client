@@ -1,0 +1,42 @@
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "6jX-QD-HVg"; */
+"6jX-QD-HVg.placeholder" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Log in"; ObjectID = "91K-Ot-wjL"; */
+"91K-Ot-wjL.normalTitle" = "Log in";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "A3n-Xd-42r"; */
+"A3n-Xd-42r.text" = "Description";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "Jw0-29-N36"; */
+"Jw0-29-N36.title" = "Item";
+
+/* Class = "UILabel"; text = "Titre"; ObjectID = "OIA-AV-Tgp"; */
+"OIA-AV-Tgp.text" = "Titre";
+
+/* Class = "UIButton"; normalTitle = "Rapport"; ObjectID = "XPc-HH-Dp6"; */
+"XPc-HH-Dp6.normalTitle" = "Rapport";
+
+/* Class = "UILabel"; text = "Mis à jour le"; ObjectID = "b3I-3t-Ms8"; */
+"b3I-3t-Ms8.text" = "Mis à jour le";
+
+/* Class = "UILabel"; text = "Ville"; ObjectID = "cNr-Nd-sUX"; */
+"cNr-Nd-sUX.text" = "Ville";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "g4v-q9-zcq"; */
+"g4v-q9-zcq.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "iWL-kR-d4u"; */
+"iWL-kR-d4u.text" = "Description";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "jD2-Y3-Ma8"; */
+"jD2-Y3-Ma8.title" = "Item";
+
+/* Class = "UILabel"; text = "ville"; ObjectID = "m4m-R2-Sum"; */
+"m4m-R2-Sum.text" = "ville";
+
+/* Class = "UILabel"; text = "Check it !"; ObjectID = "prW-bJ-thY"; */
+"prW-bJ-thY.text" = "Check it !";
+
+/* Class = "UILabel"; text = "Titre"; ObjectID = "q7S-Gc-Wsz"; */
+"q7S-Gc-Wsz.text" = "Titre";

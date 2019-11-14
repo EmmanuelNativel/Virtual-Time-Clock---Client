@@ -24,9 +24,6 @@ class MissionCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        //Couleur dans l'état sélectionné
-        backgroundColor = UIColor(named: "orangeFonce")
     }
     
     // Fonction qui va extraire les informations nécessaires dans une instance de Mission donnée en paramètre
@@ -45,7 +42,7 @@ class MissionCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: padding)
         contentView.layer.borderWidth = 2
         contentView.layer.borderColor = UIColor.black.cgColor
-        contentView.layer.backgroundColor = UIColor(named: "orangeClair")?.cgColor
+        contentView.layer.backgroundColor = UIColor(named: "orangeFonce")?.cgColor
     }
     
 
