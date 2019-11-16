@@ -79,6 +79,49 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CA062614237FC79300CACD1D /* models */ = {
+			isa = PBXGroup;
+			children = (
+				CA00772323706151000A7A45 /* Rapport.swift */,
+				CA15898F2369A96A00E2E8B5 /* Mission.swift */,
+				CA15898523696E6900E2E8B5 /* Utilisateur.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		CA062615237FC7B800CACD1D /* views */ = {
+			isa = PBXGroup;
+			children = (
+				CAA743F8235DC3CA004B5F50 /* Main.storyboard */,
+				CAA743FD235DC3CD004B5F50 /* LaunchScreen.storyboard */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		CA062616237FC7D100CACD1D /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CA08FE0C2366D0CB0045A1C2 /* LoginController.swift */,
+				CA15898B2369712E00E2E8B5 /* MissionManagerController.swift */,
+				CA15898D2369714900E2E8B5 /* MissionCell.swift */,
+				CA12C7D8236B496E0073363E /* MissionController.swift */,
+				CA9315CD236D6C4F00003499 /* ReportTextController.swift */,
+				CA33C144236DB16500D11678 /* ReportImageController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		CA062617237FC85700CACD1D /* ressources */ = {
+			isa = PBXGroup;
+			children = (
+				CAA743FB235DC3CD004B5F50 /* Assets.xcassets */,
+				CA6BF2A8237845570016AD07 /* colors.xcassets */,
+				CAEC69B7237C20E40031186F /* Localizable.strings */,
+				CA207ED0237DAB2700DC0BDB /* sounds */,
+			);
+			path = ressources;
+			sourceTree = "<group>";
+		};
 		CA207ED0237DAB2700DC0BDB /* sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,21 +152,10 @@
 		CAA743F1235DC3CA004B5F50 /* Virtual Time Clock - Client */ = {
 			isa = PBXGroup;
 			children = (
-				CA08FE0C2366D0CB0045A1C2 /* LoginController.swift */,
-				CA15898523696E6900E2E8B5 /* Utilisateur.swift */,
-				CA15898F2369A96A00E2E8B5 /* Mission.swift */,
-				CA00772323706151000A7A45 /* Rapport.swift */,
-				CA15898B2369712E00E2E8B5 /* MissionManagerController.swift */,
-				CA15898D2369714900E2E8B5 /* MissionCell.swift */,
-				CA12C7D8236B496E0073363E /* MissionController.swift */,
-				CA9315CD236D6C4F00003499 /* ReportTextController.swift */,
-				CA33C144236DB16500D11678 /* ReportImageController.swift */,
-				CAA743F8235DC3CA004B5F50 /* Main.storyboard */,
-				CAA743FD235DC3CD004B5F50 /* LaunchScreen.storyboard */,
-				CA207ED0237DAB2700DC0BDB /* sounds */,
-				CAA743FB235DC3CD004B5F50 /* Assets.xcassets */,
-				CA6BF2A8237845570016AD07 /* colors.xcassets */,
-				CAEC69B7237C20E40031186F /* Localizable.strings */,
+				CA062614237FC79300CACD1D /* models */,
+				CA062615237FC7B800CACD1D /* views */,
+				CA062616237FC7D100CACD1D /* controllers */,
+				CA062617237FC85700CACD1D /* ressources */,
 				CAA74400235DC3CD004B5F50 /* Info.plist */,
 				CAA74406235DC712004B5F50 /* GoogleService-Info.plist */,
 				CAA743F2235DC3CA004B5F50 /* AppDelegate.swift */,

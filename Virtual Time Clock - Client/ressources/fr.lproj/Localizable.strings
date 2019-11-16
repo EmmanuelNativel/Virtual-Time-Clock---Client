@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  Virtual Time Clock - Client
+
+  Created by Emmanuel Nativel on 11/13/19.
+  Copyright © 2019 Emmanuel Nativel. All rights reserved.
+*/
+
+/* Login */
+"emailPlaceholder" = "Email";
+"passwordPlaceholder" = "Mot de passe";
+"loginButton" = "Connexion";
+
+/* Mission */
+"check" = "Pointez ici !";
+"reportButton" = "Rapport";
+"dateLabel" = "Mis à jour le :";
+
+/* Alert message */
+"connectionFailed" = "La connexion a échouée. Veuillez vérifier vos identifiants.";
+"formError" = "Veuillez remplir tous les champs";
+"leaderError" = "Les gérants n'ont pas accès à cette application";
+"welcomMessage" = "Bienvenue";
+"missionsLoadingError" = "Impossible de charger les missions. Veuillez vous déconnecter et réessayer.";
+"check" = "Enregistré !";
+"checkError" = "Vous n'êtes pas dans la zone de la mission !";
+"missionNotExist" = "La mission n'existe plus";
+"imageUploadError" = "Impossible d'enregistrer l'image";
+"imageUploadSuccess" = "Image enregistrée";

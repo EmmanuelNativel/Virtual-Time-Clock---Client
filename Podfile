@@ -6,6 +6,7 @@ target 'Virtual Time Clock - Client' do
   use_frameworks!
 
   # Pods for Virtual Time Clock - Client
+    #Firebase pods
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
     pod 'Firebase/Firestore'
@@ -13,5 +14,7 @@ target 'Virtual Time Clock - Client' do
     pod 'Firebase/Storage'
     pod 'FirebaseUI/Storage'
     
+    # Toaster pod
+    pod 'Toast-Swift', '~> 5.0.0'
 
 end
