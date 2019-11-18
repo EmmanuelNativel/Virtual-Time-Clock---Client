@@ -33,6 +33,7 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
     let user = Auth.auth().currentUser          // L'utilisateur courant
     var userID: String?                         // Id de l'utilisateur courant
     var player: AVAudioPlayer!                  // Lecteur audio
+    var currentPosition: CLLocation?            // Position courante
     
     
 
@@ -142,18 +143,13 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
         // Récupération des informations nécessaires pour la mise en place de zone de proximité
         let latitude = mission!.latitude
         let longitude = mission!.longitude
-        let rayon = 20.0
-        
-        // Récupération de la position courante de l'employé
-        let currentPosition = locationManager.location
-        let currentLatitude = currentPosition?.coordinate.latitude
-        let currentLongitude = currentPosition?.coordinate.longitude
+        let rayon = mission!.rayon
         
         // Définition de la zone de porximité
         let missionArea = CLCircularRegion(center: CLLocationCoordinate2DMake(latitude, longitude), radius: rayon, identifier: "missionArea")
         
         // On check si l'employé est dans la zone de la mission au moment où il pointe
-        if missionArea.contains(CLLocationCoordinate2DMake(currentLatitude!, currentLongitude!)) {
+        if currentPosition != nil && missionArea.contains(CLLocationCoordinate2DMake((currentPosition?.coordinate.latitude)!, (currentPosition?.coordinate.longitude)!)) {
             print("🧭✅ L'employé a pointé. ")
             
             // On notifie la base de données que l'employé est dans dans la zone de mission
@@ -198,6 +194,8 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
             // On lance l'animation du bouton
             checkButton(valide: false)
         }
+        
+        locationManager.stopUpdatingLocation() // On stop le relevé de positions
     }
     
     // Fonction qui enregistre la sortie de l'employé de la zone de la mission courrante dans la base de données
@@ -262,6 +260,7 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
     // MARK: Actions
     @IBAction func onClickPointerButton(_ sender: UIButton) {
         // On lance la détection de la position de l'employé
+        locationManager.startUpdatingLocation()
         startNotifyLocation()
     }
     
@@ -349,8 +348,6 @@ extension MissionController: CLLocationManagerDelegate {
         print("🧭⛔️ Erreur de monitoring : \(error)")
     }
     
-    
-    
     // Check de la permission obtenue
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
@@ -366,5 +363,13 @@ extension MissionController: CLLocationManagerDelegate {
             print(" 🔥 La statut de la permission est inconnu ! ")
         }
     }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let lastLocation = locations.last {
+            currentPosition = lastLocation  // On récupère la position courrante
+        }
+    }
+    
+    
     
 }
