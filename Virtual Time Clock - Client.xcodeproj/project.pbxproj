@@ -26,6 +26,7 @@
 		CAA743FC235DC3CD004B5F50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAA743FB235DC3CD004B5F50 /* Assets.xcassets */; };
 		CAA743FF235DC3CD004B5F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA743FD235DC3CD004B5F50 /* LaunchScreen.storyboard */; };
 		CAA74407235DC712004B5F50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAA74406235DC712004B5F50 /* GoogleService-Info.plist */; };
+		CAB5C4232386FA6100E7B42D /* LocationAreaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5C4222386FA6100E7B42D /* LocationAreaManager.swift */; };
 		CAEC69B9237C20E40031186F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CAEC69B7237C20E40031186F /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		CAA743FB235DC3CD004B5F50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAA74400235DC3CD004B5F50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAA74406235DC712004B5F50 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CAB5C4222386FA6100E7B42D /* LocationAreaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAreaManager.swift; sourceTree = "<group>"; };
 		CAEC69B5237C207D0031186F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAEC69B6237C207D0031186F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAEC69BA237C211F0031186F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				CA00772323706151000A7A45 /* Rapport.swift */,
 				CA15898F2369A96A00E2E8B5 /* Mission.swift */,
 				CA15898523696E6900E2E8B5 /* Utilisateur.swift */,
+				CAB5C4222386FA6100E7B42D /* LocationAreaManager.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA12C7D9236B496E0073363E /* MissionController.swift in Sources */,
+				CAB5C4232386FA6100E7B42D /* LocationAreaManager.swift in Sources */,
 				CA33C145236DB16500D11678 /* ReportImageController.swift in Sources */,
 				CAA743F3235DC3CA004B5F50 /* AppDelegate.swift in Sources */,
 				CA9315CE236D6C4F00003499 /* ReportTextController.swift in Sources */,

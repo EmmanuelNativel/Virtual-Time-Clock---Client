@@ -44,7 +44,7 @@ class ReportTextController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // Modification du bouton dans la barre de navigation
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(hideKeyboard))
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done , target: self, action: #selector(hideKeyboard))
         
         // On sauvegarde le texte pour vérifier plus tard si il y a eu des modifications.
         texteInitial = reportTextView.text

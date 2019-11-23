@@ -26,7 +26,7 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
     
     
     // MARK: Attributs
-    let locationManager = CLLocationManager()   // Gestionnaire de géolocalisation
+    //let locationManager = CLLocationManager()   // Gestionnaire de géolocalisation
     let database = Firestore.firestore()        // Référence à notre base de données
     var mission: Mission? = nil                 // La mission courante
     var rapport: Rapport?                       // Le rapport de la mission courrante
@@ -55,13 +55,9 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
         setupButtons()  // Personnalisation des boutons
         userID = user?.uid ?? ""
         
-        if ( CLLocationManager.locationServicesEnabled() ){                 // On test si la géolocalisation est acitivée
-            locationManager.delegate = self                                 // Lien avec le delegate
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest       // Précision de la géolocalisation
-            locationManager.allowsBackgroundLocationUpdates = true          // On autorise la géolocalisation en tache de fond
-            locationManager.pausesLocationUpdatesAutomatically = true       // La géolocalisation peut se mettre en pause quand elle n'est pas nécessaire
-            locationManager.activityType = .other                           // On indique le type d'utilisation de la géolocalisation
-            locationManager.requestAlwaysAuthorization()                    // On demande l'autorisation de géolocaliser à l'utilisateur
+        // Si la géolocalisation est activée
+        if ( CLLocationManager.locationServicesEnabled() ){
+            LocationAreaManager.shared.setupManager() // Je paramètre le LocationManager Global
         }
     }
     
@@ -71,7 +67,6 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
             getReportFromDB(forMissionId: mission!.id)
         }
     }
-    
     
     
     // MARK: Private functions
@@ -95,7 +90,7 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
         pointerImage.layer.borderWidth = 2                          // On donne une bordure
         pointerImage.layer.borderColor = UIColor.white.cgColor      // ... de couleur noire
         pointerImage.layer.cornerRadius = 45                        // On arrondit les bords
-        pointerImage.clipsToBounds = true                           // On indique que l'image doit prendre la dorme de la bordure
+        pointerImage.clipsToBounds = true                           // On indique que l'image doit prendre la forme de la bordure
     }
     
     // Personnalisation des boutons
@@ -148,14 +143,9 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
         // Définition de la zone de porximité
         let missionArea = CLCircularRegion(center: CLLocationCoordinate2DMake(latitude, longitude), radius: rayon, identifier: "missionArea")
         
-        // On check si l'employé est dans la zone de la mission au moment où il pointe
-        if currentPosition != nil && missionArea.contains(CLLocationCoordinate2DMake((currentPosition?.coordinate.latitude)!, (currentPosition?.coordinate.longitude)!)) {
+        // On check si l'employé est dans la zone de la mission au moment où il pointe + notification pointage à BD
+        if LocationAreaManager.shared.isUserInArea(area: missionArea, userId: userID!, mission: mission!) {
             print("🧭✅ L'employé a pointé. ")
-            
-            // On notifie la base de données que l'employé est dans dans la zone de mission
-            notifyEnterToDB()
-            // On commence à écouter les entrées et sorties de la zone
-            locationManager.startMonitoring(for: missionArea)
             
             // On lance l'animation du bouton
             checkButton(valide: true)
@@ -193,34 +183,6 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
             
             // On lance l'animation du bouton
             checkButton(valide: false)
-        }
-        
-        locationManager.stopUpdatingLocation() // On stop le relevé de positions
-    }
-    
-    // Fonction qui enregistre la sortie de l'employé de la zone de la mission courrante dans la base de données
-    private func notifyExitToDB(){
-        if userID != "" {
-            print("ℹ️ Notification de sortie envoyée à la BD")
-            database.collection("pointage").document(mission!.id).collection("pointageMission").document(userID!).setData(
-                [
-                    "date" : Timestamp(date: Date()), // On enregistre également la date courante
-                    "estPresent" : false
-                ]
-            )
-        }
-    }
-    
-    // Fonction qui enregistre l'entrée de l'employé dans la zone de la mission courrante dans la base de données
-    private func notifyEnterToDB(){
-        if userID != "" {
-            print("ℹ️ Notification d'entrée envoyée à la BD")
-            database.collection("pointage").document(mission!.id).collection("pointageMission").document(userID!).setData(
-                [
-                    "date" : Timestamp(date: Date()), // On enregistre également la date courante
-                    "estPresent" : true
-                ]
-            )
         }
     }
     
@@ -260,7 +222,6 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
     // MARK: Actions
     @IBAction func onClickPointerButton(_ sender: UIButton) {
         // On lance la détection de la position de l'employé
-        locationManager.startUpdatingLocation()
         startNotifyLocation()
     }
     
@@ -315,61 +276,3 @@ class MissionController: UIViewController, AVAudioPlayerDelegate {
     
 
 } // Fin de la classe MissionController
-
-
-
-// MARK: Extensions
-
-extension MissionController: CLLocationManagerDelegate {
-    
-    // Fonction appellée quand on commence à détecter les entrées et sorties dans la zone de la mission
-    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("🧭 Lancement du contrôle de présence")
-    }
-    
-    // Fonction appellée quand l'employé entre dans la zone de la mission
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("🧭 Entrée dans la zone")
-        
-        // Mise à jour du pointage dans la base de données
-        notifyEnterToDB()
-    }
-    
-    // Fonction appellée quand l'employé sort de la zone de la mission
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        print("🧭 Sortie de la zone")
-        
-        // Mise à jour du pointage dans la base de données
-        notifyExitToDB()
-    }
-    
-    // Détection d'erreur
-    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
-        print("🧭⛔️ Erreur de monitoring : \(error)")
-    }
-    
-    // Check de la permission obtenue
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways {
-            print(" 🔥 Permission Always obtenue ! ")
-        }
-        if status == .authorizedWhenInUse {
-            print(" 🔥 Permission WhenInUse obtenue ! ")
-        }
-        if status == .denied {
-            print(" 🔥 La permission a été refusée ! ")
-        }
-        if status == .notDetermined {
-            print(" 🔥 La statut de la permission est inconnu ! ")
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let lastLocation = locations.last {
-            currentPosition = lastLocation  // On récupère la position courrante
-        }
-    }
-    
-    
-    
-}

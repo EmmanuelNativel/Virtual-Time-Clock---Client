@@ -23,28 +23,32 @@ class MissionManagerController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tempImageView = UIImageView(image: UIImage(named: "missionsBg"))
+        tempImageView.contentMode = .scaleAspectFill
+        self.tableView.backgroundView = tempImageView
         
+        if user != nil {
+            // On affiche un toast de bienvenue
+            let welcomeString = "\(NSLocalizedString("welcomMessage", comment: "Alert message")) \(user!.email!) !"
+            self.view.makeToast(welcomeString, duration: 1.5, position : .top)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         // Si aucun utilisateur n'est connecté, on affiche la vue de connexion
         if user == nil {
             print("⛔️ Aucun utilisateur n'est connecté ! Redirection à l'écran de login.")
             self.performSegue(withIdentifier: "backToLoginController", sender: self)
         } else { // Sinon, on affiche les missions
             loadMissionsFromDB(dataBase: db)
-            
-            // On affiche un toast de bienvenue
-            let welcomeString = "\(NSLocalizedString("welcomMessage", comment: "Alert message")) \(user!.email!) !"
-            self.view.makeToast(welcomeString, duration: 1.5, position : .top)
         }
-        
-        let tempImageView = UIImageView(image: UIImage(named: "missionsBg"))
-        tempImageView.contentMode = .scaleAspectFill
-        self.tableView.backgroundView = tempImageView
     }
     
     
     // MARK: Private functions
     
     private func loadMissionsFromDB(dataBase: Firestore){
+        self.missions.removeAll()
         // Lecture des documents dans la collection "missions"
         dataBase.collection("missions").getDocuments() { (query, err) in
             if let err = err {
@@ -76,7 +80,6 @@ class MissionManagerController: UITableViewController {
                     // Récupération de Number (rayon)
                     let rayon: Double = document.get("rayon") as! Double
             
-                    
                     // Création de la mission et ajout dans la liste
                     self.missions.append( Mission(id: id, titre: titre, lieu: lieu, description: description, debut: debut, fin: fin, latitude: latitude, longitude: longitude, rayon: rayon) )
                     
